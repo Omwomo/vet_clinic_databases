@@ -9,3 +9,20 @@ SELECT * FROM animals WHERE neutured = true;
 SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
+/* Day 2 queries */
+
+BEGIN;
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+SAVEPOINT SP1;
+UPDATE animals SET weight_kg = -1 * ABS(weight_kg);
+ROLLBACK SP1;
+UPDATE animals SET weight_kg = -1 * ABS(weight_kg) WHERE weight_kg < 0;
+COMMIT;
+
+/* In this line I used ABS which didn't convert the values to positive
+"UPDATE animals SET weight_kg = -1 * ABS(weight_kg) WHERE weight_kg < 0;"
+So I begin a new transaction where I converted the values to positive */
+
+BEGIN;
+UPDATE animals SET weight_kg = -1 * (weight_kg) WHERE weight_kg < 0;
+COMMIT;
