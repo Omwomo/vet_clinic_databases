@@ -17,6 +17,10 @@ SELECT * FROM animals;
 ROLLBACK;
 
 BEGIN;
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
+UPDATE animals SET species = 'pokemon' WHERE species IS NULL OR species = '';
+
+BEGIN;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 SAVEPOINT SP1;
 UPDATE animals SET weight_kg = -1 * ABS(weight_kg);
