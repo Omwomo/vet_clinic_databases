@@ -11,8 +11,6 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
 /* Day 2 queries */
 
-ALTER TABLE animals ADD species VARCHAR(50);
-
 BEGIN;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 SAVEPOINT SP1;
