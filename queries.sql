@@ -12,6 +12,11 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 /* Day 2 queries */
 
 BEGIN;
+UPDATE animals SET species = 'unspecified';
+SELECT * FROM animals;
+ROLLBACK;
+
+BEGIN;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 SAVEPOINT SP1;
 UPDATE animals SET weight_kg = -1 * ABS(weight_kg);
