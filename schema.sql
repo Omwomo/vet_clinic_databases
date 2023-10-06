@@ -10,5 +10,17 @@ CREATE TABLE animals (
     PRIMARY KEY(id)
 );
 
-
 ALTER TABLE animals ADD species VARCHAR(50);
+
+CREATE TABLE owners(
+    id INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+    full_name VARCHAR(50),
+    age INT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE species (
+    id INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+    name VARCHAR(50),
+    PRIMARY KEY(id)
+);
