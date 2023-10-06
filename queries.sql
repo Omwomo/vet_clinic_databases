@@ -9,3 +9,41 @@ SELECT * FROM animals WHERE neutured = true;
 SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
+/* Day 2 queries */
+
+BEGIN;
+UPDATE animals SET species = 'unspecified';
+SELECT * FROM animals;
+ROLLBACK;
+
+BEGIN;
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
+UPDATE animals SET species = 'pokemon' WHERE species IS NULL OR species = '';
+SELECT * FROM animals;
+COMMIT;
+SELECT * FROM animals;
+
+BEGIN;
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+SAVEPOINT SP1;
+UPDATE animals SET weight_kg = -1 * ABS(weight_kg);
+ROLLBACK SP1;
+UPDATE animals SET weight_kg = -1 * ABS(weight_kg) WHERE weight_kg < 0;
+COMMIT;
+
+/* In this line I used ABS which didn't convert the values to positive
+"UPDATE animals SET weight_kg = -1 * ABS(weight_kg) WHERE weight_kg < 0;"
+So I begun a new transaction where I converted the values to positive */
+
+BEGIN;
+UPDATE animals SET weight_kg = -1 * (weight_kg) WHERE weight_kg < 0;
+COMMIT;
+
+/* LAST QUERIES */
+SELECT COUNT(*) FROM animals;
+SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
+SELECT AVG(weight_kg) FROM animals;
+SELECT neutured, COUNT(*) as escape_count FROM animals GROUP BY neutured ORDER BY escape_count DESC LIMIT 1;
+SELECT species, MIN(weight_kg) as min_weight, MAX(weight_kg) as max_weight FROM animals GROUP BY species;
+SELECT species, MIN(weight_kg) as min_weight, MAX(weight_kg) as max_weight FROM animals GROUP BY species;
+SELECT AVG(escape_attempts) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-01-01';
