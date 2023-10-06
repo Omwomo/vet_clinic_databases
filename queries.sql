@@ -55,4 +55,4 @@ SELECT species.name, COUNT(animals.id) as animals_count FROM animals JOIN specie
 SELECT animals.name AS digimon_owned FROM animals JOIN species ON animals.species_id = species.id JOIN owners ON animals.owners_id = owners.id WHERE owners.full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
 SELECT animals.name AS never_escaped FROM animals JOIN species ON animals.species_id = species.id JOIN owners ON animals.owners_id = owners.id WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
 SELECT owners.full_name, COUNT(animals.name) AS owns_the_most_animals FROM owners JOIN animals ON animals.owners_id = owners.id GROUP BY owners.full_name ORDER BY owns_the_most_animals DESC LIMIT 1;
-
+SELECT owners.full_name AS animal_owner, animals.name AS animal_name FROM animals RIGHT JOIN owners ON animals.owners_id = owners.id;
