@@ -24,3 +24,14 @@ CREATE TABLE species (
     name VARCHAR(50),
     PRIMARY KEY(id)
 );
+
+/* Already set animals id as autoincremented primary key */
+
+ALTER TABLE animals DROP COLUMN species;
+
+ALTER TABLE animals ADD COLUMN species_id INT;
+ALTER TABLE animals ADD CONSTRAINT species_fk FOREIGN KEY (species_id) REFERENCES species(id);
+
+ALTER TABLE animals ADD COLUMN owners_id INT;
+ALTER TABLE animals ADD CONSTRAINT owners_fk FOREIGN KEY (owners_id) REFERENCES owners(id);
+
