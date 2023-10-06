@@ -36,10 +36,11 @@ VALUES
 UPDATE animals SET species_id = species.id FROM species WHERE species.name = 'Digimon' AND animals.name LIKE '%mon';
 UPDATE animals SET species_id = species.id FROM species WHERE species.name = 'Pokemon' AND animals.species_id IS NULL;
 
-
 UPDATE animals SET owners_id = owners.id FROM owners WHERE owners.full_name = 'Sam Smith' AND animals.name = 'Agumon';
 UPDATE animals SET owners_id = owners.id FROM owners WHERE owners.full_name = 'Jennifer Orwell' AND animals.name IN ('Gabumon', 'Pikachu');
 UPDATE animals SET owners_id = owners.id FROM owners WHERE owners.full_name = 'Bob' AND animals.name IN ('Devimon', 'Plantmon');
 UPDATE animals SET owners_id = owners.id FROM owners WHERE owners.full_name = 'Melody Pond' AND animals.name IN ('Charmander', 'Squirtle', 'Blossom');
 UPDATE animals SET owners_id = owners.id FROM owners WHERE owners.full_name = 'Dean Winchester' AND animals.name IN ('Angemon', 'Boarmon');
 
+/* Rectified the mix up of Species */
+UPDATE animals SET species_id = CASE WHEN species_id = 1 THEN 2 WHEN species_id = 2 THEN 1 ELSE species_id END;
