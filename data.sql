@@ -44,3 +44,11 @@ UPDATE animals SET owners_id = owners.id FROM owners WHERE owners.full_name = 'D
 
 /* Rectified the mix up of Species */
 UPDATE animals SET species_id = CASE WHEN species_id = 1 THEN 2 WHEN species_id = 2 THEN 1 ELSE species_id END;
+
+INSERT INTO vets (name, age, date_of_graduation)
+VALUES
+  ('William Tatcher', 45, '2000-04-23'),
+  ('Maisy Smith', 26, '2019-01-17'),
+  ('Stephanie Mendez', 64, '1981-05-04'),
+  ('Jack Harkness', 38, '2008-06-08');
+
