@@ -43,3 +43,10 @@ CREATE TABLE vets(
     PRIMARY KEY(id)
 );
 
+CREATE TABLE specializations(
+    species_id INT,
+    vets_id INT,
+    PRIMARY KEY (species_id, vets_id),
+    FOREIGN KEY (species_id) REFERENCES species(id),
+    FOREIGN KEY (vets_id) REFERENCES vets(id)
+);
