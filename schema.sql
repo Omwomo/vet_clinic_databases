@@ -10,5 +10,28 @@ CREATE TABLE animals (
     PRIMARY KEY(id)
 );
 
-
 ALTER TABLE animals ADD species VARCHAR(50);
+
+CREATE TABLE owners(
+    id INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+    full_name VARCHAR(50),
+    age INT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE species (
+    id INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+    name VARCHAR(50),
+    PRIMARY KEY(id)
+);
+
+/* Already set animals id as autoincremented primary key */
+
+ALTER TABLE animals DROP COLUMN species;
+
+ALTER TABLE animals ADD COLUMN species_id INT;
+ALTER TABLE animals ADD CONSTRAINT species_fk FOREIGN KEY (species_id) REFERENCES species(id);
+
+ALTER TABLE animals ADD COLUMN owners_id INT;
+ALTER TABLE animals ADD CONSTRAINT owners_fk FOREIGN KEY (owners_id) REFERENCES owners(id);
+
