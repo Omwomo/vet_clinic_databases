@@ -35,3 +35,27 @@ ALTER TABLE animals ADD CONSTRAINT species_fk FOREIGN KEY (species_id) REFERENCE
 ALTER TABLE animals ADD COLUMN owners_id INT;
 ALTER TABLE animals ADD CONSTRAINT owners_fk FOREIGN KEY (owners_id) REFERENCES owners(id);
 
+CREATE TABLE vets(
+    id INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+    name VARCHAR(100),
+    age INT,
+    date_of_graduation DATE,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE specializations(
+    species_id INT,
+    vets_id INT,
+    PRIMARY KEY (species_id, vets_id),
+    FOREIGN KEY (species_id) REFERENCES species(id),
+    FOREIGN KEY (vets_id) REFERENCES vets(id)
+);
+
+CREATE TABLE visits (
+    animals_id INT,
+    vets_id INT,
+    date_of_visits DATE,
+    PRIMARY KEY (animals_id, vets_id),
+    FOREIGN KEY (animals_id) REFERENCES animals(id),
+    FOREIGN KEY (vets_id) REFERENCES vets(id)
+);
