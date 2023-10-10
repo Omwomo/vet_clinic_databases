@@ -65,3 +65,4 @@ ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 DELETE FROM visits;
 
 ALTER TABLE visits DROP CONSTRAINT visits_pkey;
+
