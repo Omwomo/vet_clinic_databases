@@ -66,3 +66,7 @@ DELETE FROM visits;
 
 ALTER TABLE visits DROP CONSTRAINT visits_pkey;
 
+CREATE INDEX animals_id_index ON visits (animals_id);
+CREATE INDEX vets_id_index ON visits (vets_id);
+CREATE INDEX email_index ON owners (email);
+
