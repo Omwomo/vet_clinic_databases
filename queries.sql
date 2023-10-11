@@ -184,3 +184,8 @@ JOIN vets ON visits.vets_id = vets.id
 LEFT JOIN specializations ON animals.species_id = specializations.species_id
 AND visits.vets_id = specializations.vets_id
 WHERE specializations.species_id IS NULL OR specializations.species_id <> animals.species_id;
+
+-- performance audit 
+explain analyze SELECT COUNT (*) FROM visits WHERE animals_id = 4;
+explain analyze SELECT * FROM visits WHERE vets_id = 2;
+explain analyze SELECT * FROM owners where email = 'owner_18327@mail.com';
